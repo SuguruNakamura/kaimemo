@@ -999,6 +999,7 @@
 
   // ── 表示 ──
   function fmtNum(n) { return n.toLocaleString('ja-JP'); }
+  function trunc(s, n) { return s.length > n ? s.slice(0, n) + '…' : s; }
 
   function renderList() {
     const list = document.getElementById('record-list');
@@ -1042,7 +1043,7 @@
                 ${r.areaEmail ? `<div class="card-location-area">${r.areaEmail}</div>` : ''}
               </div>
             </div>
-            <div class="card-item">${(r.name||'').replace(/</g,'&lt;')}${r.spec ? `<span class="card-spec"> ${r.spec.replace(/</g,'&lt;')}</span>` : ''}</div>
+            <div class="card-item">${trunc(r.name||'', 15).replace(/</g,'&lt;')}${r.spec ? `<span class="card-spec"> ${r.spec.replace(/</g,'&lt;')}</span>` : ''}</div>
             ${numsHTML}
             ${r.order ? `<div class="card-order">注文番号：<span>${r.order}</span></div>` : ''}
           </div>
